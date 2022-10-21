@@ -37,17 +37,17 @@ class WorkflowManager:
 
         # if user is none, create a new user
         if user is None:
-            return User(used_id=self.user_service.create_user_id())
+            return User(user_id=self.user_service.create_user_id())
 
         # else return user id
         return user
 
-    def encode_user(self, user_id: str) -> str:
+    def encode_user(self, user: User) -> str:
         """
         Encode a user id.
         """
         # encode user id
-        token = self.user_service.encode_jwt(user_id)
+        token = self.user_service.encode_jwt(user)
 
         return token
 
@@ -69,20 +69,20 @@ class WorkflowManager:
 
         return links
 
-    def update_link(self, link_id: str, url: str, description: str, user_id: str) -> Link:
+    def update_link(self, link_id: str, url: str, description: str) -> Link:
         """
         Update a link.
         """
         # update link
-        link = self.link_crud_service.update_link(link_id, url, description, user_id)
+        link = self.link_crud_service.update_link(link_id, url, description)
 
         return link
 
-    def delete_link(self, link_id: str, user_id: str) -> None:
+    def delete_link(self, link_id: str) -> None:
         """
         Delete a link.
         """
         # delete link
-        self.link_crud_service.delete_link(link_id, user_id)
+        self.link_crud_service.delete_link(link_id)
 
         return None
