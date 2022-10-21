@@ -4,7 +4,7 @@ load_dotenv() # load environment variables from .env file
 from pathlib import Path
 
 # assertions to check .env file
-assert os.environ.get("ENV") in ['DEV', 'PROF']
+assert os.environ.get("ENV") in ['DEV', 'PROD', 'TEST'], "ENV must be DEV, PROD, or TEST"
 assert os.environ.get("MONGODB_CLOUD_URI") or os.environ.get("MONGODB_LOCAL_URI")
 assert os.environ.get("PORT") is not None
 assert os.environ.get("HOST") is not None
@@ -14,6 +14,7 @@ assert os.environ.get("JWT_SECRET") is not None
 # enviroment
 ENV_IS_PROD = os.environ.get("ENV") == 'PROD'
 ENV_IS_DEV = os.environ.get("ENV") == 'DEV'
+ENV_IS_TEST = os.environ.get("ENV") == 'TEST'
 
 # port
 PORT= int(os.environ.get("PORT"))

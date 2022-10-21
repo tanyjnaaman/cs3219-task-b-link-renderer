@@ -1,10 +1,10 @@
 from src.exceptions import DatabaseException, DatabaseItemNotFoundException
 from src.db.interfaces import DatabaseIndexWrapper
 from pymongo import MongoClient
-from src.constants import ENV_IS_DEV, MONGODB_COLLABORATION_DATABASE_NAME, MONGODB_JSON_PATH, MONGODB_TABLES, MONGODB_URI
+from src.constants import ENV_IS_DEV, ENV_IS_TEST, MONGODB_COLLABORATION_DATABASE_NAME, MONGODB_JSON_PATH, MONGODB_TABLES, MONGODB_URI
 from typing import Any, Dict, List
 import logging
-
+import mongomock
 
 class DatabaseWrapper:
 
@@ -13,6 +13,14 @@ class DatabaseWrapper:
         
         self.client = _client or MongoClient(_mongodb_uri or MONGODB_URI)
         self.db = self.client[MONGODB_COLLABORATION_DATABASE_NAME]
+
+
+    def clear_db(self):
+        """
+        Clears the database.
+        """
+        for table in MONGODB_TABLES:
+            self.db.drop_collection(table)
 
 
     def populate_database(self, table_to_items_map: Dict[str, List[object]]): 
@@ -87,14 +95,17 @@ class DatabaseWrapper:
         elif result.deleted_count > 1:
             raise DatabaseException(f"Found multiple items in table {table} with index keys {index_keys}, but trying to delete one.")
 
-        
-db = DatabaseWrapper()
-if ENV_IS_DEV:
-    # read data from json
-    print("Reading dev data from json...")
-    import json
-    with open(MONGODB_JSON_PATH, "r") as f:
-        table_to_items_map = json.load(f)
-        db.populate_database(table_to_items_map)
+if ENV_IS_TEST:
+    db = DatabaseWrapper(_client=mongomock.MongoClient())
 
-    
+else:
+    db = DatabaseWrapper()
+    if ENV_IS_DEV:
+        # read data from json
+        print("Reading dev data from json...")
+        import json
+        with open(MONGODB_JSON_PATH, "r") as f:
+            table_to_items_map = json.load(f)
+            db.populate_database(table_to_items_map)
+
+        
