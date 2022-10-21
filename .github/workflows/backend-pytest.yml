@@ -12,7 +12,7 @@ jobs:
     # same contents as .env.sample
     env:
       ENV: DEV
-      PORT: 8003
+      PORT: 8000
       HOST: 0.0.0.0
       MONGODB_LOCAL_URI: mongodb://localhost:27017/
       FRONTEND_HOST: http://localhost:3000
@@ -34,7 +34,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd collaboration-service
+          cd backend
           python -m pip install --upgrade pip
           pip install pytest
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
