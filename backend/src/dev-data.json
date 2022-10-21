@@ -1,0 +1,11 @@
+{
+    "link": [
+        {
+            "user_id": "1",
+            "link_id": "1",
+            "url": "https://medium.com/towards-data-science/why-i-decided-to-do-a-phd-in-machine-learning-fdee03bb956f",
+            "description": "A really cool reading on ML.",
+            "last_updated": "2019-01-01 00:00:00"
+        }
+    ]
+}

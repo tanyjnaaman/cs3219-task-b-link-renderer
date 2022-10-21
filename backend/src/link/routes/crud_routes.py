@@ -1,7 +1,7 @@
 from typing import List, Union
 from fastapi import APIRouter, Body, Cookie
 
-from backend.src.link.workflow_manager import WorkflowManager
+from src.workflow_manager import WorkflowManager
 router = APIRouter()
 
 @router.post("/create") 
@@ -20,7 +20,7 @@ def create_link(url: str = Body(...), description: str = Body(...), jwt_token: s
 
     return link
 
-@router.get("/get_all_user/{user_id}")
+@router.get("/get_all_user")
 def get_all_user_links(jwt_token: str = Cookie(...)):
     """
     Get all links for a user.
@@ -48,12 +48,12 @@ def update_link(link_id: str = Body(...), url: Union[str, None] = Body(...), des
     user = manager.auth(jwt_token)
 
     # update link
-    link = manager.update_link(link_id, url, description, user.user_id)
+    link = manager.update_link(link_id, url, description)
 
     return link
 
-@router.delete("/delete")
-def delete_link(link_id: str = Body(...), jwt_token: str = Cookie(...)):
+@router.delete("/delete/{link_id}")
+def delete_link(link_id: str, jwt_token: str = Cookie(...)):
     """
     Delete a link.
     """
@@ -64,6 +64,6 @@ def delete_link(link_id: str = Body(...), jwt_token: str = Cookie(...)):
     user = manager.auth(jwt_token)
 
     # delete link
-    manager.delete_link(link_id, user.user_id)
+    manager.delete_link(link_id)
 
     return {"message": "Link deleted."}

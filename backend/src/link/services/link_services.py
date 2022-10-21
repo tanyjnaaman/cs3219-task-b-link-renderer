@@ -1,5 +1,5 @@
 from typing import List
-from backend.src.exceptions import DatabaseException
+from src.exceptions import DatabaseException
 from src.link.interfaces.link import Link
 from src.constants import LINK_TABLE_NAME
 from src.db.db import db, DatabaseWrapper
@@ -54,7 +54,7 @@ class LinkCrudService:
         """
         # get item
         items = self.db.get_items(self.table, {"link_id": link_id})
-        if len(items != 1): 
+        if len(items) != 1: 
             raise DatabaseException(f"Expected 1 item, got {len(items)}")
 
         # wrap into interface
@@ -94,6 +94,7 @@ class LinkCrudService:
             link.last_updated = datetime.now().isoformat()
             self.db.update_item(self.table, {"link_id": link_id}, link.dict())
 
+        return link
     def delete_link(self, link_id: str) -> None:
         """
         Delete a link.

@@ -19,7 +19,7 @@ class DatabaseWrapper:
         """
         POpulates the db with the given data.
         """
-        logging.info("Populating database from data...")
+        print("Populating database from data...")
         for table in MONGODB_TABLES:
 
             # 1. drop table
@@ -30,7 +30,7 @@ class DatabaseWrapper:
             logging.info(f"Populating table {table}")
             self.db[table].insert_many(items)
 
-        logging.info("Done populating database from data.")
+        print("Done populating database from data.")
     
     def create_index(self, index_specifications: DatabaseIndexWrapper): 
         """
@@ -91,7 +91,7 @@ class DatabaseWrapper:
 db = DatabaseWrapper()
 if ENV_IS_DEV:
     # read data from json
-    logging.debug("Reading dev data from json...")
+    print("Reading dev data from json...")
     import json
     with open(MONGODB_JSON_PATH, "r") as f:
         table_to_items_map = json.load(f)
