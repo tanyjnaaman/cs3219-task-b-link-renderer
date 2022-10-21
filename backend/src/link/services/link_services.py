@@ -9,8 +9,8 @@ from uuid import uuid4
 
 class LinkCrudService:
     """
-    Responsible for crud operations on the rooms table 
-    in the collaboration service database.
+    Responsible for crud operations on the links table 
+    in the database.
     """
 
     def __init__(self, _db: DatabaseWrapper = db):

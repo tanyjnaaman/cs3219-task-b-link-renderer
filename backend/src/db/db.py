@@ -1,7 +1,7 @@
 from src.exceptions import DatabaseException, DatabaseItemNotFoundException
 from src.db.interfaces import DatabaseIndexWrapper
 from pymongo import MongoClient
-from src.constants import ENV_IS_DEV, ENV_IS_TEST, MONGODB_COLLABORATION_DATABASE_NAME, MONGODB_JSON_PATH, MONGODB_TABLES, MONGODB_URI
+from src.constants import ENV_IS_DEV, ENV_IS_TEST, MONGODB_DATABASE_NAME, MONGODB_JSON_PATH, MONGODB_TABLES, MONGODB_URI
 from typing import Any, Dict, List
 import logging
 import mongomock
@@ -12,7 +12,7 @@ class DatabaseWrapper:
         # initialize db and collection being referenced
         
         self.client = _client or MongoClient(_mongodb_uri or MONGODB_URI)
-        self.db = self.client[MONGODB_COLLABORATION_DATABASE_NAME]
+        self.db = self.client[MONGODB_DATABASE_NAME]
 
 
     def clear_db(self):

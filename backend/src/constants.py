@@ -27,7 +27,7 @@ JWT_SECRET = os.environ.get("JWT_SECRET") or ""
 MONGODB_CLOUD_URI = os.environ.get("MONGODB_CLOUD_URI")
 MONGODB_LOCAL_URI = os.environ.get("MONGODB_LOCAL_URI")
 MONGODB_URI = MONGODB_CLOUD_URI if ENV_IS_PROD else MONGODB_LOCAL_URI
-MONGODB_COLLABORATION_DATABASE_NAME = "link-renderer"
+MONGODB_DATABASE_NAME = "link-renderer"
 
 # mongodb tables
 MONGODB_JSON_PATH = str(Path("./src/dev-data.json").resolve())
