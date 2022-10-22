@@ -1,6 +1,5 @@
 from typing import List, Union
 from fastapi import APIRouter, Body, Cookie
-
 from src.workflow_manager import WorkflowManager
 router = APIRouter()
 

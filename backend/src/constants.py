@@ -40,4 +40,3 @@ MONGODB_TABLES = [
 FRONTEND_HOST = os.environ.get("FRONTEND_HOST") or ""
 
 
-
