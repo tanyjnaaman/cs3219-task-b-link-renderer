@@ -1,7 +1,6 @@
 from typing import List, Union
 from fastapi import APIRouter, Body, Cookie
-
-from backend.src.link.workflow_manager import WorkflowManager
+from src.workflow_manager import WorkflowManager
 router = APIRouter()
 
 @router.post("/create") 
