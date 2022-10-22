@@ -12,10 +12,9 @@ app = FastAPI()
 app.add_middleware(
         CORSMiddleware,
         allow_origins=[FRONTEND_HOST],  
-        allow_methods=[FRONTEND_HOST],
-        allow_headers=[FRONTEND_HOST],
+        allow_methods=["*"],
+        allow_headers=["*"],
         allow_credentials=True,
-
     )
 
 # add routers

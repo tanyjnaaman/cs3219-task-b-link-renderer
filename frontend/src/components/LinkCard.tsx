@@ -1,12 +1,12 @@
-import { useLinkPreview } from "get-link-preview";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
-import { Collapse, IconButton, Typography } from "@mui/material";
+import { Link, IconButton, Typography } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useEffect, useState } from "react";
 
 function LinkCard(props: {
   url: string;
@@ -22,32 +22,30 @@ function LinkCard(props: {
     handleEditContent,
     handleDeleteCard,
   } = props;
+
+  // ============ states =============
+
+  // ============= functions  ========
+
   // ============= hooks =============
-  const { getLinkPreviewData, loading, error, data } = useLinkPreview(url);
-  const {
-    success,
-    title,
-    description,
-    image,
-    sitename,
-    ogUrl,
-    type,
-    domain,
-    favicion,
-  } = data;
 
   // ============= component =========
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardHeader title={title} subheader={description} />
-      <CardMedia
+    <Card>
+      <CardHeader
+        title={
+          <Link href={url} color="inherit">
+            {url}
+          </Link>
+        }
+      />
+      {/* <CardMedia
         component="img"
         height="194"
-        image="/static/images/cards/paella.jpg"
-        alt="Paella dish"
-      />
+        image={imageUrl.length > 0 ? imageUrl : undefined}
+      /> */}
       <CardContent>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body1" color="text.secondary">
           {user_description}
         </Typography>
       </CardContent>
