@@ -128,6 +128,8 @@ function App() {
         const newCardList = [...cardList];
         newCardList.push(response.data);
         setCardList(newCardList);
+        setUrl("");
+        setDescription("");
       })
       .catch((err) => {
         console.log("error");
@@ -179,10 +181,10 @@ function App() {
   const inputCard = (
     <Card style={{ minWidth: "100%" }}>
       <CardHeader
-        title={<Typography variant="h5">Add a new card</Typography>}
+        title={<Typography variant="h5">Add a new link</Typography>}
       />
       <CardContent>
-        <Stack>
+        <Stack spacing={2}>
           <TextField
             variant="outlined"
             label="URL"
@@ -215,10 +217,10 @@ function App() {
    * Popup card for edit
    */
   const popUpCard = (
-    <Card style={{ minWidth: "100%" }}>
+    <Card style={{ minWidth: "80%" }}>
       <CardHeader title={<Typography variant="h5">Edit card</Typography>} />
       <CardContent>
-        <Stack>
+        <Stack spacing={2}>
           <TextField
             variant="outlined"
             label="URL"
@@ -258,18 +260,28 @@ function App() {
             padding={"32px"}
           >
             {inputCard}
-            <Paper style={{ minHeight: "400px", padding: "12px" }}>
-              <Typography variant="h5">Your saved links</Typography>
-              {cardList.map((card) => (
-                <LinkCard
-                  key={card.link_id}
-                  url={card.url}
-                  user_description={card.description}
-                  last_updated={card.last_updated}
-                  handleEditContent={() => handleEditContent(card.link_id)}
-                  handleDeleteCard={() => handleDeleteCard(card.link_id)}
-                />
-              ))}
+            <Paper
+              style={{
+                minHeight: "400px",
+                padding: "12px",
+                paddingBottom: "12px",
+              }}
+            >
+              <Stack spacing={2}>
+                <Typography variant="h5">Your saved links</Typography>
+                <Stack spacing={2}>
+                  {cardList.map((card) => (
+                    <LinkCard
+                      key={card.link_id}
+                      url={card.url}
+                      user_description={card.description}
+                      last_updated={card.last_updated}
+                      handleEditContent={() => handleEditContent(card.link_id)}
+                      handleDeleteCard={() => handleDeleteCard(card.link_id)}
+                    />
+                  ))}
+                </Stack>
+              </Stack>
             </Paper>
           </Stack>
         ) : (
