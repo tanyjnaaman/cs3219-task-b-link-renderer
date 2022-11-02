@@ -1,4 +1,4 @@
-version: '3.9'
+version: '3.3'
 
 services:
   mongodb-local:
@@ -11,7 +11,7 @@ services:
     container_name: "backend"
     build: ./backend
     ports:
-      - "8000:8000"
+      - "80:8000"
     depends_on:
       - mongodb-local
     environment:
@@ -19,7 +19,7 @@ services:
       - HOST=0.0.0.0
       - PORT=8000
       - MONGODB_CLOUD_URI=
-      - MONGODB_LOCAL_URI=mongodb://mongodb:27017/
+      - MONGODB_LOCAL_URI=mongodb://mongodb-local:27017/
       - FRONTEND_HOST=http://frontend:3000
       - JWT_SECRET=token
 

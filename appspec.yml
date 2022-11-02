@@ -1,0 +1,10 @@
+version: 0.0
+os: linux
+files:
+  - source: .
+    destination: /home/ubuntu/cs3219-task-b-link-renderer
+hooks:
+  ApplicationStart:
+    - location: scripts/backend/start_backend
+      timeout: 300
+      runas: root
