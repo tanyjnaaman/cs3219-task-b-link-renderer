@@ -1,6 +1,6 @@
 name: CI/CD Pipeline
 on:
-  merge:
+  push:
     branches: [ main, staging ]
 
 jobs:
