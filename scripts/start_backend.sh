@@ -1,4 +1,4 @@
 #!/bin/bash
-cd /home/ec2-user/app/
+cd /home/ubuntu/cs3219-task-b-link-renderer/
 source environment/bin/activate
-supervisord -c supervisord.conf
+python -m src.main
