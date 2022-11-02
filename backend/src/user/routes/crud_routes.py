@@ -17,6 +17,6 @@ def create_or_auth(response: Response, jwt_token: Union[str, None] = Cookie(None
     user = manager.auth_or_create(jwt_token)
 
     # set cookie
-    response.set_cookie(key="jwt_token", value=manager.encode_user(user), httponly=True)
+    response.set_cookie(key="jwt_token", value=manager.encode_user(user))
 
     return user
