@@ -31,7 +31,7 @@ app.include_router(
 # sanity
 @app.get("/")
 def root():
-    return {"message": "Hello World from backend.Test!"}
+    return {"message": "Hello World from backend. Another!"}
 
 if __name__ == "__main__":
 
