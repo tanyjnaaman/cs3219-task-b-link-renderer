@@ -1,4 +1,3 @@
 #!/bin/bash
-cd /home/ec2-user/app/
-source environment/bin/activate
-supervisord -c supervisord.conf
+cd /home/ubuntu/cs3219-task-b-link-renderer/
+docker-compose up --build backend

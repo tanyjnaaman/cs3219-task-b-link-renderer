@@ -4,10 +4,6 @@ files:
   - source: .
     destination: /home/ubuntu/cs3219-task-b-link-renderer
 hooks:
-  AfterInstall:
-    - location: scripts/backend/install_app_dependencies
-      timeout: 300
-      runas: root
   ApplicationStart:
     - location: scripts/backend/start_backend
       timeout: 300
