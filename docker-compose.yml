@@ -19,7 +19,7 @@ services:
       - HOST=0.0.0.0
       - PORT=8000
       - MONGODB_CLOUD_URI=
-      - MONGODB_LOCAL_URI=mongodb://mongodb:27017/
+      - MONGODB_LOCAL_URI=mongodb://mongodb-local:27017/
       - FRONTEND_HOST=http://frontend:3000
       - JWT_SECRET=token
 
