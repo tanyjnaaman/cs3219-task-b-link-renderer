@@ -7,5 +7,5 @@ files:
 hooks:
   ApplicationStart:
     - location: scripts/backend/start_backend.sh
-      timeout: 360
+      timeout: 300
       runas: root
