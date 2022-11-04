@@ -56,7 +56,10 @@ class DatabaseWrapper:
         """
         Inserts data into a table.
         """
-        self.db[table].insert_one(data)
+        try:
+            self.db[table].insert_one(data)
+        except: 
+            raise DatabaseException("Error inserting item to db.")
 
     def get_items(self, table:str, index_keys: Dict[str, Any]) -> List[Dict[str, Any]]:
         """

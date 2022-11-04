@@ -1,12 +1,12 @@
 
 from fastapi import APIRouter, Cookie, Response
-from typing import Union
+from typing import Optional
 from src.workflow_manager import WorkflowManager
 
 router = APIRouter()
 
 @router.get("/create_or_auth") 
-def create_or_auth(response: Response, jwt_token: Union[str, None] = Cookie(None)):
+def create_or_auth(response: Response, jwt_token: Optional[str] = Cookie(None)):
     """
     Create a new link.
     """
@@ -17,6 +17,6 @@ def create_or_auth(response: Response, jwt_token: Union[str, None] = Cookie(None
     user = manager.auth_or_create(jwt_token)
 
     # set cookie
-    response.set_cookie(key="jwt_token", value=manager.encode_user(user), httponly=True)
+    response.set_cookie(key="jwt_token", value=manager.encode_user(user))
 
     return user
