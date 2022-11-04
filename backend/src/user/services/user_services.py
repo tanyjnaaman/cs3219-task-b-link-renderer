@@ -21,6 +21,8 @@ class UserService:
         Decode a JWT into user data.
         """
         # decode
+        if token is None: 
+            return None
         try:
             decoded = jwt.decode(token, key=self.jwt_token, algorithms=self.algorithm)
         except jwt.ExpiredSignatureError:

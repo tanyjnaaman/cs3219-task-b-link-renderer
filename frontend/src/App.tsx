@@ -28,8 +28,10 @@ interface User {
 }
 
 // constants
-const BACKEND_HOST =
-  "http://ec2-18-181-180-50.ap-northeast-1.compute.amazonaws.com";
+// constants
+// const BACKEND_HOST =
+//   "http://ec2-18-181-180-50.ap-northeast-1.compute.amazonaws.com";
+const BACKEND_HOST = "http://localhost:8000";
 const BACKEND_CREATE_OR_AUTH_ENDPOINT = BACKEND_HOST + "/user/create_or_auth";
 const BACKEND_GET_ALL_LINKS_ENDPOINT = BACKEND_HOST + "/link/get_all_user";
 const BACKEND_CREATE_CARD_ENDPOINT = BACKEND_HOST + "/link/create";

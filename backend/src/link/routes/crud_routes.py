@@ -1,10 +1,10 @@
-from typing import List, Union
+from typing import List, Optional, Union
 from fastapi import APIRouter, Body, Cookie
 from src.workflow_manager import WorkflowManager
 router = APIRouter()
 
 @router.post("/create") 
-def create_link(url: str = Body(...), description: str = Body(...), jwt_token: str = Cookie(...)):
+def create_link(url: str = Body(...), description: str = Body(...), jwt_token: Optional[str] = Cookie(None)):
     """
     Create a new link.
     """
@@ -20,7 +20,7 @@ def create_link(url: str = Body(...), description: str = Body(...), jwt_token: s
     return link
 
 @router.get("/get_all_user")
-def get_all_user_links(jwt_token: str = Cookie(...)):
+def get_all_user_links(jwt_token: Optional[str] = Cookie(None)):
     """
     Get all links for a user.
     """
@@ -36,7 +36,7 @@ def get_all_user_links(jwt_token: str = Cookie(...)):
     return links
 
 @router.put("/update")
-def update_link(link_id: str = Body(...), url: Union[str, None] = Body(...), description: Union[str, None] = Body(...), jwt_token: str = Cookie(...)):
+def update_link(link_id: str = Body(...), url: Union[str, None] = Body(...), description: Union[str, None] = Body(...), jwt_token: Optional[str] = Cookie(None)):
     """
     Update a link.
     """
@@ -52,7 +52,7 @@ def update_link(link_id: str = Body(...), url: Union[str, None] = Body(...), des
     return link
 
 @router.delete("/delete/{link_id}")
-def delete_link(link_id: str, jwt_token: str = Cookie(...)):
+def delete_link(link_id: str, jwt_token: Optional[str] = Cookie(None)):
     """
     Delete a link.
     """
