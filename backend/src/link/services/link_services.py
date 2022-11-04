@@ -55,7 +55,7 @@ class LinkCrudService:
         # get item
         items = self.db.get_items(self.table, {"link_id": link_id})
         if len(items) != 1: 
-            raise DatabaseException(f"Expected 1 item, got {len(items)}")
+            raise DatabaseException(f"Expected 1 item, got {len(items)}. Link id ({link_id}) does not exist.")
 
         # wrap into interface
         link = Link(**items[0])

@@ -12,8 +12,8 @@ app = FastAPI()
 app.add_middleware(
         CORSMiddleware,
         allow_origins=[FRONTEND_HOST],  
-        allow_methods=["*"],
-        allow_headers=["*"],
+        allow_methods=["GET", "POST", "OPTIONS", "PUT", "DELETE"],
+        allow_headers=["Content-Type","Set-Cookie"],
         allow_credentials=True,
     )
 
@@ -31,7 +31,7 @@ app.include_router(
 # sanity
 @app.get("/")
 def root():
-    return {"message": "Hello World from backend.Test!"}
+    return {"message": "Hello World from backend service :-)"}
 
 if __name__ == "__main__":
 

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import logo from "./logo.svg";
 import axios from "axios";
 
 import "./App.css";
@@ -16,7 +15,7 @@ import {
   Typography,
 } from "@mui/material";
 
-interface Card {
+interface CardInterface {
   user_id: string;
   link_id: string;
   url: string;
@@ -29,7 +28,8 @@ interface User {
 }
 
 // constants
-const BACKEND_HOST = "http://localhost:8000";
+const BACKEND_HOST =
+  "http://ec2-18-181-180-50.ap-northeast-1.compute.amazonaws.com";
 const BACKEND_CREATE_OR_AUTH_ENDPOINT = BACKEND_HOST + "/user/create_or_auth";
 const BACKEND_GET_ALL_LINKS_ENDPOINT = BACKEND_HOST + "/link/get_all_user";
 const BACKEND_CREATE_CARD_ENDPOINT = BACKEND_HOST + "/link/create";
@@ -38,7 +38,7 @@ const BACKEND_DELETE_CARD_ENDPOINT = BACKEND_HOST + "/link/delete";
 
 function App() {
   // ================== states ===================
-  const [cardList, setCardList] = useState<Card[]>([]);
+  const [cardList, setCardList] = useState<CardInterface[]>([]);
   const [user, setUser] = useState<User | undefined>(undefined);
   const [url, setUrl] = useState<string>("");
   const [description, setDescription] = useState<string>("");
@@ -160,6 +160,7 @@ function App() {
    */
   useEffect(() => {
     if (user) {
+      console.log(BACKEND_GET_ALL_LINKS_ENDPOINT);
       // fetch card list from backend
       axios
         .get(BACKEND_GET_ALL_LINKS_ENDPOINT, {
